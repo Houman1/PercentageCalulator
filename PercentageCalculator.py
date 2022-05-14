@@ -1,20 +1,30 @@
 import re
 import save_meal
 
+save = save_meal.SaveMeal()
 dictionary = {}
 
-
 def new_meal():
-    NumOfItems = int(input("How many items do you have?: "))
+    load_meal_choice = input("Do you want to load a meal? (Y/N)\n")
 
-    for i in range(NumOfItems):
-        item = input("please input item NAME: ")
-        value = input("please input the VALUE of your item: ")
-        while not re.match(r'^([\s\d]+)$', value):
-            print("value is not valid format, please use integers")
-            value = input("please input the value of your item: ")
+    if load_meal_choice.lower() == "y":
+        save.show_meals()
+        load_meal_number = int(input("which meal number would you like?\n"))
+        loaded_meal = save.load_meal(load_meal_number)
+        print(loaded_meal)
+        dictionary=loaded_meal
 
-        dictionary[item] = value
+    else:
+        NumOfItems = int(input("How many items do you have?: "))
+
+        for i in range(NumOfItems):
+            item = input("please input item NAME: ")
+            value = input("please input the VALUE of your item: ")
+            while not re.match(r'^([\s\d]+)$', value):
+                print("value is not valid format, please use integers")
+                value = input("please input the value of your item: ")
+
+            dictionary[item] = value
 
 
 def percentages(dictionary):
@@ -42,16 +52,16 @@ def percentages(dictionary):
 new_meal()
 percentages(dictionary)
 
-replay = input("do you want to do another quantity of this meal (Y/N)"+ "\n")
+def replay_or_save():
+    replay = input("do you want to do another quantity of this meal (Y/N)?" + "\n")
 
-while replay.lower() == "y":
-    percentages(dictionary)
-    replay = input("do you want to do another quantity of this meal (Y/N)"+ "\n")
+    while replay.lower() == "y":
+        percentages(dictionary)
+        replay = input("do you want to do another quantity of this meal (Y/N)?" + "\n")
 
-save = save_meal.Save_meal()
-save.choose()
-2
-if save.choice == "y":
-    save.save_meal(foods=dictionary)
+    save.choose()
+    2
+    if save.choice == "y":
+        save.save_meal(foods=dictionary)
 
-input("\nPress enter to exit")
+    input("\nPress enter to exit")
