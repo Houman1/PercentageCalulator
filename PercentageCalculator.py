@@ -27,7 +27,7 @@ def percentages(dictionary):
     for i in dictionary:
         print(f"{i} = {round(int(dictionary[i]) / total_amount * 100)}%")
 
-    num = input("\n\n\nEnter total food eaten:")
+    num = int(input("\n\n\nEnter total food eaten:"))
 
     while type(num) != int:
         print("That is not a valid integer value, please enter an integer value")
