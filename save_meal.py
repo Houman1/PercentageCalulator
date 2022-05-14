@@ -1,16 +1,20 @@
+import json
 
-class save_meal:
+class Save_meal:
 
     def __init__(self):
-        self.choice
+        self.choice = "n"
+        self.foods = {}
 
 
 
 
-    def choice(self):
-        self.choice = input("do you want to save this meal (Y/N)" + "\n\n\n")
-        if self.choice().lower() == "y":
-            save_meal()
+    def choose(self):
+        save_choice = input("do you want to save this meal (Y/N)" + "\n")
+        self.choice = save_choice.lower()
 
     def save_meal(self, foods):
-        pass
+
+        print("SAVED")
+        # with open('file.txt', 'w') as file:
+        #     file.write(json.dumps(foods))

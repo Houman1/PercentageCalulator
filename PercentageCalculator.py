@@ -1,4 +1,5 @@
 import re
+import save_meal
 
 dictionary = {}
 
@@ -36,15 +37,21 @@ def percentages(dictionary):
     for i in dictionary:
         print(f"{i} = {round(int(dictionary[i]) / total_amount * int(num))}")
 
-    print( "*"*100 + "\n\n\n")
+    print("*"*50 + "\n")
 
 new_meal()
 percentages(dictionary)
 
-replay = input("do you want to do another quantity of this meal (Y/N)"+ "\n\n\n")
+replay = input("do you want to do another quantity of this meal (Y/N)"+ "\n")
 
 while replay.lower() == "y":
     percentages(dictionary)
-    replay = input("do you want to do another quantity of this meal (Y/N)"+ "\n\n\n")
+    replay = input("do you want to do another quantity of this meal (Y/N)"+ "\n")
 
-input("\n\n\nPress enter to exit")
+save = save_meal.Save_meal()
+save.choose()
+2
+if save.choice == "y":
+    save.save_meal(foods=dictionary)
+
+input("\nPress enter to exit")
