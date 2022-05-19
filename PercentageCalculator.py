@@ -1,3 +1,4 @@
+import glob
 import re
 import save_meal
 
@@ -10,10 +11,11 @@ class PercentageCalculator:
         self.load_meal_choice = "n"
 
     def new_meal(self):
-        load_meal_choice = input("Do you want to load a meal? (Y/N)\n")
-        self.load_meal_choice = load_meal_choice
+        if glob.glob("*.txt"):
+            load_meal_choice = input("Do you want to load a meal? (Y/N)\n")
+            self.load_meal_choice = load_meal_choice
 
-        if load_meal_choice.lower() == "y":
+        if self.load_meal_choice.lower() == "y":
             self.save.show_meals()
             load_meal_number = int(input("which meal number would you like?\n"))
             loaded_meal = self.save.load_meal(load_meal_number)

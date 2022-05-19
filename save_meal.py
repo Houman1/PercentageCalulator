@@ -1,6 +1,8 @@
 import glob
 import json
 import os
+from datetime import datetime
+
 
 class SaveMeal:
 
@@ -16,7 +18,7 @@ class SaveMeal:
     def save_meal(self, foods):
         meal_name = input("what is the meal name:" + "\n")
         print("SAVED")
-        with open(f'{meal_name}.txt', 'w') as file:
+        with open(f'{meal_name}({datetime.today().date()}).txt', 'w') as file:
             file.write(json.dumps(foods))
 
     def show_meals(self):
@@ -34,3 +36,6 @@ class SaveMeal:
 
 
 
+
+if __name__ == "__main__":
+    pass
