@@ -24,7 +24,7 @@ class SaveMeal:
     def show_meals(self):
         #os.chdir("/mydir")
         indexes = {}
-        for index, file in enumerate(glob.glob("*.txt")):
+        for index, file in enumerate(sorted(glob.glob("*.txt"), key=os.path.getmtime, reverse=True)):
             print(f"{index+1}-{file}")
             indexes[index+1]=file
         self.meal_indexes = indexes
