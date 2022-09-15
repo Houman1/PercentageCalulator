@@ -18,14 +18,14 @@ class SaveMeal:
     def save_meal(self, foods):
         meal_name = input("what is the meal name:" + "\n")
         print("SAVED")
-        with open(f'{meal_name}({datetime.today().date()}).txt', 'w') as file:
+        with open(f'meals/{meal_name}({datetime.today().date()}).txt', 'w') as file:
             file.write(json.dumps(foods))
 
     def show_meals(self):
         #os.chdir("/mydir")
         indexes = {}
-        for index, file in enumerate(sorted(glob.glob("*.txt"), key=os.path.getmtime, reverse=True)):
-            print(f"{index+1}-{file}")
+        for index, file in enumerate(sorted(glob.glob("meals/*.txt"), key=os.path.getmtime, reverse=True)):
+            print(f"{index+1}-{file[6:]}")
             indexes[index+1]=file
         self.meal_indexes = indexes
 
